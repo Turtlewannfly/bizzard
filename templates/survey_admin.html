@@ -1,0 +1,50 @@
+{% include 'header_admin.html' %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Survey DataTable
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>User ID</th>
+                                            <th>Interested Lanched</th>
+                                            <th>Path to Market</th>
+                                            <th>Pull Sales</th>
+                                            <th>comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>User ID</th>
+                                            <th>Interested Lanched</th>
+                                            <th>Path to Market</th>
+                                            <th>Pull Sales</th>
+                                            <th>comments</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for survey in surveys %}
+                                            <tr>
+                                                <td>{{ survey.product_name }}</td>
+                                                <td>{{ survey.user_id }}</td>
+                                                <td>{{ survey.interested_lanched }}</td>
+                                                <td>{{ survey.path_to_market }}</td>
+                                                <td>{{ survey.pull_sales }}</td>
+                                                <td>{{ survey.comments }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+{% include 'footer_admin.html' %}  

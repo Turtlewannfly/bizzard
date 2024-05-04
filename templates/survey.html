@@ -1,0 +1,68 @@
+{% include 'header.html' %}
+        <!-- Header-->
+        <header class="py-3">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-3 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-3">
+                        <h1 class="display-5 fw-bold">{{ survey.name }}</h1>
+                        <p class="fs-4">{{ survey.description }}</p>
+                        <!-- <a class="btn btn-primary btn-lg" href="#!">Call to action</a> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container px-lg-5">
+            <div class="survey-form">
+                <form action="{{ url_for('survey', survey_id=survey.id) }}" method="post">
+                    
+                    <div class="question">
+                        <p>1. How interested are you in having this product launched? Please rate 1-5 (Low-High).<span class="required"></span></p>
+                        <div class="options">
+                            <label><input type="radio" name="launched" value="1" required> 1</label>
+                            <label><input type="radio" name="launched" value="2" required> 2</label>
+                            <label><input type="radio" name="launched" value="3" required> 3</label>
+                            <label><input type="radio" name="launched" value="4" required> 4</label>
+                            <label><input type="radio" name="launched" value="5" required> 5</label>
+                        </div>
+                    </div>
+        
+                    <!-- You can add more questions similarly -->
+                    
+                    <div class="question">
+                        <p>2. For Simpson, is the path to market for this product concept established? Please rate 1-5 (Not established-Well established).<span class="required"></span></p>
+                        <div class="options">
+                            <label><input type="radio" name="pathmarket" value="1" required> 1</label>
+                            <label><input type="radio" name="pathmarket" value="2" required> 2</label>
+                            <label><input type="radio" name="pathmarket" value="3" required> 3</label>
+                            <label><input type="radio" name="pathmarket" value="4" required> 4</label>
+                            <label><input type="radio" name="pathmarket" value="5" required> 5</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>3. Do you feel this product will “pull” sales of other products along? Please rate 1-5 (Low-High).<span class="required"></span></p>
+                        <div class="options">
+                            <label><input type="radio" name="pullsales" value="1" required> 1</label>
+                            <label><input type="radio" name="pullsales" value="2" required> 2</label>
+                            <label><input type="radio" name="pullsales" value="3" required> 3</label>
+                            <label><input type="radio" name="pullsales" value="4" required> 4</label>
+                            <label><input type="radio" name="pullsales" value="5" required> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>4. Please provide any additional Comments you have.</p>
+                        <div class="comment">
+                            <textarea name="comment" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <!-- Add more questions as needed -->
+        
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+{% include 'footer.html' %}
+

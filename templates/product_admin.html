@@ -1,0 +1,98 @@
+{% include 'header_admin.html' %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <!-- Button trigger modal -->
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                Add Product
+                            </button>
+                        </div>
+                        
+                        <!-- Add Product Modal -->
+                        <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form method="post" action="{{ url_for('add_product') }}">
+                                    <div class="mb-3">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="productName" name="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="productDescription" name="description" rows="3" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-primary shadow-sm float-end">Add</button>
+                                </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4 mt-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Product DataTable
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for product in products %}
+                                            <tr>
+                                                <td>{{ product.name }}</td>
+                                                <td>{{ product.description }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                          // Edit Product Modal
+                          const editProductModal = new bootstrap.Modal(document.getElementById('editProductModal'));
+                          const editProductForm = document.getElementById('editProductForm');
+                          const editProductName = document.getElementById('editProductName');
+                          const editProductDescription = document.getElementById('editProductDescription');
+                          const editProductId = document.getElementById('editProductId');
+                      
+                          // Open Edit Product Modal
+                          function openEditModal(id, name, description) {
+                            editProductId.value = id;
+                            editProductName.value = name;
+                            editProductDescription.value = description;
+                            editProductModal.show();
+                          }
+                      
+                          // Example: Open edit modal when edit button is clicked
+                          const editButtons = document.querySelectorAll('.edit-btn');
+                          editButtons.forEach(button => {
+                            button.addEventListener('click', function () {
+                              const id = this.dataset.id;
+                              const name = this.dataset.name;
+                              const description = this.dataset.description;
+                              openEditModal(id, name, description);
+                            });
+                          });
+                        });
+                      </script>
+                </main>
+{% include 'footer_admin.html' %}                 
