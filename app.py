@@ -460,6 +460,3 @@ def pull_chart_data():
     
     return jsonify(data)
 
-# Main python ------------------------------------------------------
-if __name__ == '__main__':
-    app.run(debug=False, port=5001)
